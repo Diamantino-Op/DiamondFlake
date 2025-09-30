@@ -40,7 +40,9 @@ in {
     package = inputs.hyprpolkitagent.packages.${pkgs.stdenv.hostPlatform.system}.hyprpolkitagent;
   };
 
-  inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor;
+  environment.systemPackages = [
+    inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor;
+  ];
 
   hardware.graphics = {
     package = pkgs-unstable.mesa;
