@@ -3,13 +3,24 @@
 
 in {
   environment.systemPackages = with pkgs; [
-    kitty
-    fish
-    starship
     btop
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
   ];
+
+  programs.kitty = {
+    enable = true;
+
+    package = pkgs.kitty.override { 
+      enableWayland = true; 
+    };
+  };
+
+  environment.variables.KITTY_ENABLE_WAYLAND = "1";
+
+  programs.fish.enable = true;
+
+  programs.starship.enable = true;
 
   programs.uwsm.enable = true;
 
