@@ -22,7 +22,7 @@ in {
     package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
   };
 
-  programs.hypridle = {
+  services.hypridle = {
     enable = true;
 
     package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
