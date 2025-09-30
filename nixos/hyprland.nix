@@ -4,6 +4,8 @@
 in {
   environment.systemPackages = with pkgs; [
     kitty
+    mesa
+    mesa-drivers
     btop
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
@@ -44,10 +46,10 @@ in {
   };
 
   hardware.graphics = {
-    package = pkgs-unstable.mesa;
+    package = pkgs.mesa;
 
     enable32Bit = true;
-    package32 = pkgs-unstable.pkgsi686Linux.mesa;
+    package32 = pkgs.pkgsi686Linux.mesa;
   };
 
   nix.settings = {
