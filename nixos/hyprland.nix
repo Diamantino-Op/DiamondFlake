@@ -53,22 +53,20 @@ in {
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  sound.enable = true;
+  services.pipewire = {
+    enable = true;
 
-  services = {
-    pipewire = {
+    audio.enable = true;
+
+    pulse.enable = true;
+
+    alsa = {
       enable = true;
-
-      pulse.enable = true;
-
-      alsa = {
-        enable = true;
-
-        support32Bit = true;
-      };
-
-      jack.enable = true;
+        
+      support32Bit = true;
     };
+
+    jack.enable = true;
   };
 
   # programs.dconf.profiles.user.databases = [
