@@ -2,27 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }: 
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hyprland.nix
     ];
 
-  programs.hyprland.enable = false;
-  programs.uwsm.enable = false;
-  programs.hyprland.xwayland.enable = false;
-  programs.hyprlock.enable = false;
-  programs.hyprland.withUWSM = false;
-  programs.iio-hyprland.enable = false;
-  programs.hyprland.systemd.setPath.enable = false;
   programs.git.enable = true;
-  services.hypridle.enable = false;
-
-  # hardware.graphics.package = pkgs-unstable.mesa;
-  # hardware.graphics.enable32Bit = true;
-  # hardware.graphics.package32 = pkgs-unstable.pkgsi686Linux.mesa;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
