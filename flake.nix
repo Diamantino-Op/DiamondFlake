@@ -50,6 +50,23 @@
               portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
             };
           }
+          {
+            systemd.user.services.hyprpolkitagent = {
+              Unit = {
+                Description = "Hyprland Polkit Authentication Agent";
+                After = [ "graphical-session.target" ];
+              };
+
+              Service = {
+                ExecStart = "${inputs.hyprpolkitagent.packages.${pkgs.stdenv.hostPlatform.system}.hyprpolkitagent}/bin/hyprpolkitagent";
+                Restart = "on-failure";
+              };
+
+              Install = {
+                WantedBy = [ "default.target" ];
+              };
+            };
+          }
         ];
       };
     };

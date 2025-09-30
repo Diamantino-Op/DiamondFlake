@@ -28,20 +28,9 @@ in {
     package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
   };
 
-  programs.hyprpaper = {
-    enable = true;
-
-    package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper;
-  };
-
-  programs.hyprpolkitagent = {
-    enable = true;
-
-    package = inputs.hyprpolkitagent.packages.${pkgs.stdenv.hostPlatform.system}.hyprpolkitagent;
-  };
-
   environment.systemPackages = [
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
+    inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
   ];
 
   hardware.graphics = {
