@@ -22,7 +22,7 @@
     hyprcursor.url = "github:hyprwm/hyprcursor";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland } @ inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, hyprlock, hypridle, hyprpaper, hyprpolkitagent, hyprcursor } @ inputs:
 
   let 
     system = "x86_64-linux";
