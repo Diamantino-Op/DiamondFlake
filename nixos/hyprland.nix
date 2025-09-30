@@ -8,13 +8,7 @@ in {
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
   ];
 
-  programs.kitty = {
-    enable = true;
-
-    package = pkgs.kitty.override { 
-      enableWayland = true; 
-    };
-  };
+  programs.kitty.enable = true;
 
   environment.variables.KITTY_ENABLE_WAYLAND = "1";
 
