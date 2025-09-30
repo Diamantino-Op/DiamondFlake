@@ -11,6 +11,8 @@ in {
     withUWSM = true;
     xwayland.enable = true;
 
+    # nvidiaPatches = true;
+
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
@@ -46,6 +48,31 @@ in {
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.enable = true;
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  sound.enable = true;
+
+  services = {
+    pipewire = {
+      enable = true;
+
+      audio.enable = true;
+
+      pulse.enable = true;
+
+      alsa = {
+        enable = true;
+        
+        support32Bit = true;
+      };
+
+      jack.enable = true;
+    };
+  };
+
   # programs.dconf.profiles.user.databases = [
   #   {
   #     settings."org/gnome/desktop/interface" = {
@@ -57,4 +84,24 @@ in {
   #     };
   #   }
   # ];
+
+  # NVIDIA drivers.  
+
+  # services.xserver.videoDrivers = [ "nvidia" ]; # If you are using a hybrid laptop add its iGPU manufacturer
+  # hardware.opengl = {  
+    # enable = true;  
+    # driSupport = true;  
+    # driSupport32Bit = true;  
+  # };
+
+  # hardware.nvidia = {
+    # Enable modesetting for Wayland compositors (hyprland)
+    # modesetting.enable = true;
+    # Use the open source version of the kernel module (for driver 515.43.04+)
+    # open = true;
+    # Enable the Nvidia settings menu
+    # nvidiaSettings = true;
+    # Select the appropriate driver version for your specific GPU
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # };
 }
