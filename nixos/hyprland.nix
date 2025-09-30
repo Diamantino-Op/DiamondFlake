@@ -3,12 +3,11 @@
 
 in {
   environment.systemPackages = with pkgs; [
+    kitty
     btop
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
   ];
-
-  programs.kitty.enable = true;
 
   environment.variables.KITTY_ENABLE_WAYLAND = "1";
 
