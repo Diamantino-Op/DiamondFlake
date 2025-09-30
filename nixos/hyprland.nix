@@ -5,7 +5,6 @@ in {
   environment.systemPackages = with pkgs; [
     kitty
     mesa
-    mesa.drivers
     btop
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
