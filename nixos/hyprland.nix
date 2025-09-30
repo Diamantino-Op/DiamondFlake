@@ -41,7 +41,7 @@ in {
   };
 
   environment.systemPackages = [
-    inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor;
+    inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
   ];
 
   hardware.graphics = {
