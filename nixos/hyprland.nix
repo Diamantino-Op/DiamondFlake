@@ -7,6 +7,8 @@ in {
     fish
     starship
     btop
+    inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
+    inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
   ];
 
   programs.uwsm.enable = true;
@@ -36,11 +38,6 @@ in {
 
     package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
   };
-
-  environment.systemPackages = [
-    inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
-    inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
-  ];
 
   hardware.graphics = {
     package = pkgs-unstable.mesa;
