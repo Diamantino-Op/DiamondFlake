@@ -2,6 +2,13 @@
   pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
 in {
+  environment.systemPackages = with pkgs; [
+    kitty
+    fish
+    starship
+    btop
+  ];
+
   programs.uwsm.enable = true;
 
   programs.hyprland = {
@@ -49,11 +56,12 @@ in {
   };
 
   services.displayManager.sddm.enable = true;
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "it";
-  services.xserver.xkb.options = "eurosign:e,caps:escape";
+    xkb.layout = "it";
+    xkb.options = "eurosign:e,caps:escape";
+  };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
