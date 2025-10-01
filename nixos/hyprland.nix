@@ -44,16 +44,11 @@ in {
   };
 
   hardware.graphics = {
-    package = pkgs.mesa;
-
-    enable32Bit = true;
-    package32 = pkgs.pkgsi686Linux.mesa;
-  };
-
-  hardware.opengl = {  
     enable = true;
-    
-    driSupport32Bit = true;  
+    enable32Bit = true;
+
+    package = pkgs.mesa;
+    package32 = pkgs.pkgsi686Linux.mesa;
   };
 
   nix.settings = {
