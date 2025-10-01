@@ -51,8 +51,8 @@ in {
   };
 
   hardware.opengl = {  
-    enable = true;  
-    driSupport = true;  
+    enable = true;
+    
     driSupport32Bit = true;  
   };
 
