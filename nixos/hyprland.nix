@@ -4,9 +4,7 @@
 in {
   environment.systemPackages = with pkgs; [
     kitty
-    vulkan-tools
     btop
-    glfw
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
   ];
