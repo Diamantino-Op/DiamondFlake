@@ -50,6 +50,12 @@ in {
     package32 = pkgs.pkgsi686Linux.mesa;
   };
 
+  hardware.opengl = {  
+    enable = true;  
+    driSupport = true;  
+    driSupport32Bit = true;  
+  };
+
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
     trusted-substituters = ["https://hyprland.cachix.org"];
@@ -97,11 +103,6 @@ in {
   # NVIDIA drivers.  
 
   # services.xserver.videoDrivers = [ "nvidia" ]; # If you are using a hybrid laptop add its iGPU manufacturer
-  # hardware.opengl = {  
-    # enable = true;  
-    # driSupport = true;  
-    # driSupport32Bit = true;  
-  # };
 
   # hardware.nvidia = {
     # Enable modesetting for Wayland compositors (hyprland)
