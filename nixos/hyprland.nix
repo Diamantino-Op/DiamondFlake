@@ -3,7 +3,7 @@
 
 in {
   environment.systemPackages = with pkgs; [
-    alacritty
+    kitty
     btop
     inputs.hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.hyprcursor
     inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprpaper
