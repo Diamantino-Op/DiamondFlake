@@ -97,8 +97,8 @@ in
     ];
 
     extraConfig = {
-      gpg.ssh.allowedSignersFile =
-        config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
+      # gpg.ssh.allowedSignersFile =
+      #   config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
 
       pull.rebase = true;
     };
