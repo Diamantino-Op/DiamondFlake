@@ -113,14 +113,10 @@ in
 
     render = {
       direct_scanout = true;
-      # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-      explicit_sync = 0;
-      explicit_sync_kms = 0;
     };
 
     # touchpad gestures
     gestures = {
-      workspace_swipe = true;
       workspace_swipe_forever = true;
     };
 
