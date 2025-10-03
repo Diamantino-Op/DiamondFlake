@@ -4,9 +4,9 @@
     tray = true;
 
     # stopgap until geoclue's wifi location is fixed
-    provider = "geoclue2";
-    # latitude = 45.0;
-    # longitude = 25.0;
+    provider = "manual";
+    latitude = 45.0;
+    longitude = 11.0;
 
     enableVerboseLogging = true;
 
