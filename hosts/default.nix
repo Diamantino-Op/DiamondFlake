@@ -37,6 +37,7 @@
 
           "${mod}/network/syncthing.nix"
 
+          "${mod}/services/kanata"
           "${mod}/services/gnome-services.nix"
           "${mod}/services/location.nix"
 
@@ -76,6 +77,7 @@
 
           "${mod}/network/syncthing.nix"
 
+          "${mod}/services/kanata"
           "${mod}/services/gnome-services.nix"
           "${mod}/services/location.nix"
 
