@@ -1,51 +1,6 @@
 { pkgs, ... }:
 {
   programs.vscode = {
-  enable = true;
-  extensions = with pkgs.vscode-extensions; [
-    theqtcompany.qt-core
-    theqtcompany.qt-cpp
-    theqtcompany.qt-ui
-    theqtcompany.qt-qml
-    theqtcompany.qt
-    theqtcompany.qt-cpp-pack
-    arktypeio.arkdark
-    destruc7i0n.vscode-bedrock-definitions
-    blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension
-    ms-vscode.cpptools
-    ms-vscode.cpptools-extension-pack
-    ms-vscode.cpptools-themes
-    catppuccin.catppuccin-vsc
-    catppuccin.catppuccin-vsc-icons
-    alexdauenhauer.catppuccin-noctis
-    twxs.cmake
-    ms-vscode.cmake-tools
-    fabiospampinato.vscode-diff
-    mkhl.direnv
-    usernamehw.errorlens
-    github.copilot
-    github.copilot-chat
-    ms-vsliveshare.vsliveshare
-    ms-vscode.makefile-tools
-    mojang-studios.minecraft-debugger
-    nobuwu.mc-color
-    levertion.mcjson
-    zz5840.minecraft-lang-colorizer
-    stevertus.mcscript
-    arrterian.nix-env-selector
-    pinage404.nix-extension-pack
-    jnoortheen.nix-ide
-    yutengjing.open-in-external-app
-    ryu1kn.partial-diff
-    ms-python.vscode-pylance
-    ms-python.python
-    ms-python.debugpy
-    ms-python.vscode-python-envs
-    kevinrose.vsc-python-indent
-    mechatroner.rainbow-csv
-    jannisx11.snowstorm
-    netcorext.uuid-generator
-    joshx.workspace-terminals
-  ];
-};
+    enable = true;
+  };
 }
