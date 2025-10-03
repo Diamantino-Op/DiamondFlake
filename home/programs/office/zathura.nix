@@ -24,7 +24,7 @@
   xdg.configFile = {
     "zathura/catppuccin-latte".source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/catppuccin/zathura/refs/heads/main/themes/catppuccin-latte";
-      hash = "sha256-GbSSl8k0Eqtq5IwcAHE7BiTajozNc+z+VhCAkbFDi2E=";
+      hash = "sha256-GbSSl8k0Rqtq5IwcAHE7BiTajozNc+z+VhCAkbFDi2E=";
     };
     "zathura/catppuccin-mocha".source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/catppuccin/zathura/refs/heads/main/themes/catppuccin-mocha";
