@@ -1,84 +1,157 @@
 {
   description = "DiamondPC Flake configuration";
 
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+
+      imports = [
+        ./hosts
+        ./lib
+        ./modules
+        ./pkgs
+        ./fmt-hooks.nix
+      ];
+
+      perSystem =
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.git
+              config.packages.repl
+            ];
+            name = "dots";
+            env.DIRENV_LOG_FORMAT = "";
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
+        };
+    };
+
   inputs = {
+    systems.url = "github:nix-systems/default-linux";
+
+    flake-compat.url = "github:edolstra/flake-compat";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    home-manager = {
+    ags = {
+      # use raf's fork of agsv1.
+      # TODO: set up quickshell ASAP
+      url = "github:NotAShelf/rags";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    anyrun.url = "github:fufexan/anyrun/launch-prefix";
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    hm = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote.url = "github:nix-community/lanzaboote";
+
+    nix-index-db = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
+    yazi.url = "github:sxyazi/yazi";
+
     hyprland.url = "github:hyprwm/Hyprland";
 
-    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
 
-    hypridle.url = "github:hyprwm/hypridle";
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
 
-    hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     hyprcursor.url = "github:hyprwm/hyprcursor";
-  };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, hyprlock, hypridle, hyprpaper, hyprpolkitagent, hyprcursor } @ inputs:
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-  let 
-    system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-      
-      config = {
-        allowUnfree = true;
+    uwu-colors = {
+      url = "github:q60/uwu_colors";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
       };
     };
 
-  in {
-    homeConfigurations = {
-      "diamantino@diamondpc" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-        modules = [
-          {
-            wayland.windowManager.hyprland = {
-              enable = true;
-
-              # set the flake package
-              package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-              portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-            };
-          }
-          {
-            systemd.user.services.hyprpolkitagent = {
-              Unit = {
-                Description = "Hyprland Polkit Authentication Agent";
-                After = [ "graphical-session.target" ];
-              };
-
-              Service = {
-                ExecStart = "${inputs.hyprpolkitagent.packages.${pkgs.stdenv.hostPlatform.system}.hyprpolkitagent}/bin/hyprpolkitagent";
-                Restart = "on-failure";
-              };
-
-              Install = {
-                WantedBy = [ "default.target" ];
-              };
-            };
-          }
-        ];
-      };
-    };
-
-    nixosConfigurations = {
-      diamondpc = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit system; inherit inputs; };
-
-        modules = [
-          ./nixos/configuration.nix
-        ];
-      };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
