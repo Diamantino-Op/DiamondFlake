@@ -141,6 +141,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     uwu-colors = {
       url = "github:q60/uwu_colors";
       inputs = {
