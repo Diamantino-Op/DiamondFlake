@@ -32,14 +32,14 @@ in
     bindm = [
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
-      "$mod ALT, mouse:272, resizewindow"
+      "$mod SUPER, mouse:272, resizewindow"
     ];
 
     # binds
     bind = [
       # compositor commands
       "$mod SHIFT, E, exec, pkill Hyprland"
-      "$mod, Q, killactive,"
+      "$mod, C, killactive,"
       "$mod, F, fullscreen,"
       "$mod, G, togglegroup,"
       "$mod SHIFT, N, changegroupactive, f"
@@ -51,7 +51,7 @@ in
 
       # utility
       # terminal
-      "$mod, Return, exec, uwsm app -- foot"
+      "$mod, Q, exec, kitty"
       # logout menu
       "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
       # lock screen
@@ -105,7 +105,7 @@ in
 
     bindr = [
       # launcher
-      "$mod, SUPER_L, exec, ${toggle "anyrun"}"
+      "$mod, E, exec, ${toggle "anyrun"}"
     ];
 
     bindl = [
