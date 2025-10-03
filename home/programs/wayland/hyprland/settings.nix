@@ -84,7 +84,8 @@ in
     };
 
     input = {
-      kb_layout = "ro";
+      kb_layout = "it";
+      kb_options = "eurosign:e";
 
       # focus change on cursor move
       follow_mouse = 1;
