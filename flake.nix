@@ -86,8 +86,6 @@
       };
     };
 
-    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
-
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs = {

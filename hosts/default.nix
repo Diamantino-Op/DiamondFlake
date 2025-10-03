@@ -9,8 +9,6 @@
       # shorten paths
       inherit (inputs.nixpkgs.lib) nixosSystem;
 
-      howdy = inputs.nixpkgs-howdy;
-
       homeImports = import "${self}/home/profiles";
 
       mod = "${self}/system";
@@ -49,13 +47,6 @@
               backupFileExtension = ".hm-backup";
             };
           }
-
-          # enable unmerged Howdy
-          { 
-            disabledModules = [ "security/pam.nix" ]; 
-          }
-          "${howdy}/nixos/modules/security/pam.nix"
-          "${howdy}/nixos/modules/services/security/howdy"
 
           inputs.chaotic.nixosModules.default
         ];
